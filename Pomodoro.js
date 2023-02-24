@@ -1,5 +1,6 @@
 var States = ["WORK", "PAUSE", "LPAUSE"];
-class Pomodoro{
+class Pomodoro {
+
     constructor(){
         this.state = States[0];
         this.first_step = true;
@@ -8,6 +9,7 @@ class Pomodoro{
     init(workTime, pauseTime, lpauseTime, cycles){
         this.workTime = workTime;
         this.pauseTime = pauseTime;
+        console.log(lpauseTime)
         this.lpauseTime = lpauseTime;
         this.cycles = cycles;
         this.remaining = cycles;
@@ -16,6 +18,18 @@ class Pomodoro{
         this.first_step = true;
         this.state = States[0];
     }
+
+    getState(){
+        switch(this.state){
+            case States[0]: // IF WORKING
+                return "WORK";
+            case States[1]: // IF PAUSING
+                return "PAUSE";
+            case States[2]: // IF LONG PAUSING
+                return "LONG PAUSE";
+        }   
+    }
+
 
     reset(){
         this.first_step = true;
@@ -38,6 +52,10 @@ class Pomodoro{
         return this.time_left() / 60;
     }
 
+    getProgress(){
+        return (this.cycles - this.remaining) +  "/"  + this.cycles;
+    }
+
     step(dt){
         if(this.first_step){
             this.first_step = false;
@@ -49,12 +67,12 @@ class Pomodoro{
                 if(this.time >= this.workTime){
                     this.totcycles++;
                     this.remaining--;
+                    this.time = 0;
                     if(this.remaining == 0){
                         this.state = States[2];
                         return
                     }
                     this.state = States[1];
-                    this.time = 0;
                 }
                 break;
             case States[1]:

@@ -19,10 +19,10 @@
         <input type="number" id="workT-setting" name="workT-setting" min="1" value="25">
         <br>
         <label for="pauseT-setting">Time of short pauses (min)</label>
-        <input type="number" id="pauseT-setting" name="pauseT-setting" min="1" value="5">
+        <input type="number" id="pauseT-setting" name="pauseT-setting" min="0" value="5">
         <br>
         <label for="longpauseT-setting">Time of long pauses (min)</label>
-        <input type="number" id="longpauseT-setting" name="longpauseT-setting" min="1" value="30">
+        <input type="number" id="lpauseT_setting" name="lpauseT_setting" min="0" value="15">
         <br>
         <label for="cycles-setting">Pomodoro cycles</label>
         <input type="number" id="cycles-setting" name="cycles-setting" min="1" value="4">
@@ -35,7 +35,6 @@
         <div id="progress"></div>
         <div id="total"></div>
         <button id="start">Start</button>
-        <button id="pause">Pause</button>
         <button id="reset">Reset</button>
     </div>
     <script src="./Pomodoro.js"></script>
